@@ -1,0 +1,6 @@
+[rbrepo]
+name=redBorder-repo
+baseurl=https://repo.redborder.com/devel
+gpgcheck=0
+enabled=1
+sslcheck=0
