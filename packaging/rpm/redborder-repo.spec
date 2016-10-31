@@ -12,7 +12,7 @@ Source0: %{name}-%{version}.tar.gz
 Requires: epel-release
 
 %description
-This package contains the Extra Packages for redBorder repository
+This package contains the Extra Packages for redborder repository
 as well as configuration for yum.
 
 %prep
