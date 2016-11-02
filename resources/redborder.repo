@@ -1,6 +1,6 @@
 [redborder-devel]
 name=redborder repository devel
-baseurl=https://s3-eu-west-1.amazonaws.com/redborder-repo/devel/
+baseurl=https://s3-eu-west-1.amazonaws.com/repo.redborder.com/devel/
 gpgcheck=1
 enabled=1
 sslcheck=1
