@@ -35,6 +35,8 @@ rm -rf $RPM_BUILD_ROOT
 /etc/pki/rpm-gpg/RPM-GPG-KEY-redborder-repo
 
 %changelog
+* Thu Jan 24 2018 Juan J. Prieto <jjprieto@redborder.com> - 0.0.4-1
+- Add logstash repo
 * Thu Nov 03 2016 Juan J. Prieto <jjprieto@redborder.com> - 0.0.3-1
 - Fix host mapping
 * Mon Oct 31 2016 Juan J. Prieto <jjprieto@redborder.com> - 0.0.2-1
