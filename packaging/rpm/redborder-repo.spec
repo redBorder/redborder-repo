@@ -35,6 +35,8 @@ rm -rf $RPM_BUILD_ROOT
 /etc/pki/rpm-gpg/RPM-GPG-KEY-redborder-repo
 
 %changelog
+* Wed Jan 27 2020 Juan J. Prieto <jjprieto@redborder.com> - 0.0.5-1
+- Replace logstash 6 repo by 7
 * Thu Jan 24 2018 Juan J. Prieto <jjprieto@redborder.com> - 0.0.4-1
 - Add logstash repo
 * Thu Nov 03 2016 Juan J. Prieto <jjprieto@redborder.com> - 0.0.3-1
