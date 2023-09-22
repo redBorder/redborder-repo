@@ -1,6 +1,7 @@
 [redborder-devel]
-name=redborder repository devel
-baseurl=http://repo.redborder.com/devel/
-gpgcheck=0
+name=Redborder Official Repository - $basearch
+baseurl=https://repo.redborder.com/ng/rhel/rhel/9/$basearch/
 enabled=1
+gpgcheck=0
 sslcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redborder-repo
