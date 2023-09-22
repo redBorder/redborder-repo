@@ -34,7 +34,7 @@ rm -rf $RPM_BUILD_ROOT
 /etc/pki/rpm-gpg/RPM-GPG-KEY-redborder-repo
 
 %changelog
-* Frid Sep 22 2023 Miguel Negrón <manegron@redborder.com> - 0.0.6-1
+* Frid Sep 22 2023 Miguel Negrón <manegron@redborder.com> - 0.1.0-1
 - Move to rhel9
 * Wed Jan 27 2020 Juan J. Prieto <jjprieto@redborder.com> - 0.0.5-1
 - Replace logstash 6 repo by 7
