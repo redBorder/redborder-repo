@@ -1,6 +1,6 @@
 [redborder-devel]
 name=Redborder Official Repository - $basearch
-baseurl=https://repo.redborder.com/ng/rhel/9/$basearch/
+baseurl=https://repo.redborder.com/ng/latest/rhel/9/$basearch/
 enabled=1
 gpgcheck=0
 sslcheck=0
