@@ -10,7 +10,7 @@ MOCK_CONFIG?=default
 
 RESULT_DIR?=pkgs
 
-REPO_URL?=repo.redborder.com
+REPO_URL?=https://repo.redborder.com
 
 all: rpm
 
