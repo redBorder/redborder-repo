@@ -18,6 +18,8 @@ as well as configuration for yum.
 %setup -qn %{name}-%{version}
 
 %build
+sed -i "s/{{PRODUCT_VERSION}}/$__product_version/g" resources/redborder.repo
+sed -i "s/{{REPO_URL}}/$__repo_url/g" resources/redborder.repo
 
 %install
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d

@@ -1,5 +1,7 @@
 PACKAGE_NAME?=	redborder-repo
 
+PRODUCT_VERSION?= latest
+
 VERSION?=	$(shell git describe --abbrev=6 --tags HEAD --always | sed 's/-/_/g')
 
 BUILD_NUMBER?= 1
@@ -7,6 +9,8 @@ BUILD_NUMBER?= 1
 MOCK_CONFIG?=default
 
 RESULT_DIR?=pkgs
+
+REPO_URL?=repo.redborder.com
 
 all: rpm
 
@@ -30,6 +34,8 @@ srpm: build_prepare
 		-r $(MOCK_CONFIG) \
 		--define "__version $(VERSION)" \
 		--define "__release $(BUILD_NUMBER)" \
+		--define "__product_version $(PRODUCT_VERSION)" \
+		--define "__repo_url $(REPO_URL)" \
 		--resultdir=$(RESULT_DIR) \
 		--buildsrpm \
 		--spec=${PACKAGE_NAME}.spec \
@@ -41,6 +47,8 @@ rpm: srpm
 		-r $(MOCK_CONFIG) \
 		--define "__version $(VERSION)"\
 		--define "__release $(BUILD_NUMBER)"\
+		--define "__product_version $(PRODUCT_VERSION)" \
+		--define "__repo_url $(REPO_URL)" \
 		--resultdir=$(RESULT_DIR) \
 		--rebuild $(RESULT_DIR)/$(PACKAGE_NAME)*.src.rpm
 	@echo "======= Binary RPMs now available in $(RESULT_DIR) ======="
