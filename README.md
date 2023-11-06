@@ -1,6 +1,6 @@
 # redborder-repo
 
-Build a version particular product version:
+Build a particular product version:
 
 ```
 PRODUCT_VERSION=23.11 VERSION=1.0.0 make rpm
