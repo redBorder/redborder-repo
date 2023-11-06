@@ -1,4 +1,4 @@
-Name: redborder-repo
+Name: %{__package_name}
 Version: %{__version}
 Release: %{__release}%{?dist}
 BuildArch: noarch
@@ -24,7 +24,7 @@ sed -i "s|{{REPO_URL}}|%{__repo_url}|g" resources/redborder.repo
 %install
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg
-install -D -m 644 resources/redborder.repo $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d/
+install -D -m 644 resources/redborder.repo $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d/redborder-%{__product_version}.repo
 install -D -m 644 resources/RPM-GPG-KEY-redborder-repo $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/
 
 %clean
@@ -32,7 +32,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(0644,root,root)
-/etc/yum.repos.d/redborder.repo
+/etc/yum.repos.d/redborder-%{__product_version}.repo
 /etc/pki/rpm-gpg/RPM-GPG-KEY-redborder-repo
 
 %changelog
