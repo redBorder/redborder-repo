@@ -14,5 +14,5 @@ VERSION=1.0.0 make rpm
 
 Build with different URL:
 ```
-VERSION=1.0.0 REPO_URL="http://rbrepo.redborder.lan" make rpm
+VERSION=1.0.0 REPO_URL="https://packages.redborder.com" make rpm
 ```
