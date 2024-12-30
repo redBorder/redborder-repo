@@ -1,6 +1,6 @@
 [redborder-{{PRODUCT_VERSION}}]
 name=Redborder Official Repository - $basearch
-baseurl={{REPO_URL}}/{{PRODUCT_VERSION}}/rhel/9/$basearch/
+baseurl={{REPO_URL}}/releases/{{PRODUCT_VERSION}}/rhel/9/$basearch/
 enabled=1
 gpgcheck=0
 sslcheck=0
