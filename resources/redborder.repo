@@ -4,4 +4,5 @@ baseurl={{REPO_URL}}/releases/{{PRODUCT_VERSION}}/rhel/9/$basearch/
 enabled=1
 gpgcheck=0
 sslcheck=0
+metadata_expire=6h
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redborder-repo
