@@ -3,16 +3,16 @@
 Build a particular product version:
 
 ```
-PRODUCT_VERSION=23.11 VERSION=1.0.0 make rpm
+PRODUCT_VERSION=25.04 VERSION=0.0.1 make rpm
 ```
 
 Build latest (by default PRODUCT_VERSION=latest):
 
 ```
-VERSION=1.0.0 make rpm
+VERSION=0.0.1 make rpm
 ```
 
 Build with different URL:
 ```
-VERSION=1.0.0 REPO_URL="http://rbrepo.redborder.lan" make rpm
+VERSION=0.0.1 REPO_URL="https://packages.redborder.com" make rpm
 ```
