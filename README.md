@@ -1,18 +1,24 @@
 # redborder-repo
 
-Build a particular product version:
+Este repositorio permite construir paquetes RPM de un producto específico de Redborder.
+
+## Construir una versión específica del producto
+Para compilar un RPM de una versión concreta del producto:
 
 ```
 PRODUCT_VERSION=25.04 VERSION=0.0.1 make rpm
 ```
 
-Build latest (by default PRODUCT_VERSION=latest):
+## Construir la última versión disponible
+Si no se especifica **PRODUCT_VERSION**, por defecto se usará `latest`:
 
-```
+```bash
 VERSION=0.0.1 make rpm
 ```
 
-Build with different URL:
-```
-VERSION=0.0.1 REPO_URL="https://packages.redborder.com" make rpm
+## Construir desde una URL distinta
+Para usar un repositorio personalizado, por defecto se usará `https://packages.redborder.com`:
+
+```bash
+VERSION=0.0.1 REPO_URL="https://packages.redbordersc.lan" make rpm
 ```
