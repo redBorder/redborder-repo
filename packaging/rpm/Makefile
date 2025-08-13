@@ -1,6 +1,8 @@
-PRODUCT_VERSION?= latest
+USERNAME?= ljblanco
 
-PACKAGE_NAME?=	redborder-repo-$(PRODUCT_VERSION)
+PRODUCT_VERSION?= devel
+
+PACKAGE_NAME?=	$(USERNAME)-repo
 
 VERSION?=	$(shell git describe --abbrev=6 --tags HEAD --always | sed 's/-/_/g')
 
@@ -33,6 +35,7 @@ srpm: build_prepare
 	/usr/bin/mock \
 		-r $(MOCK_CONFIG) \
 		--define "__package_name $(PACKAGE_NAME)" \
+		--define "__username $(USERNAME)" \
 		--define "__version $(VERSION)" \
 		--define "__release $(BUILD_NUMBER)" \
 		--define "__product_version $(PRODUCT_VERSION)" \
@@ -47,6 +50,7 @@ rpm: srpm
 	/usr/bin/mock \
 		-r $(MOCK_CONFIG) \
 		--define "__package_name $(PACKAGE_NAME)" \
+		--define "__username $(USERNAME)" \
 		--define "__version $(VERSION)"\
 		--define "__release $(BUILD_NUMBER)"\
 		--define "__product_version $(PRODUCT_VERSION)" \

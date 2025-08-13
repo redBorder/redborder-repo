@@ -19,12 +19,13 @@ as well as configuration for yum.
 
 %build
 sed -i "s|{{PRODUCT_VERSION}}|%{__product_version}|g" resources/redborder.repo
+sed -i "s|{{USERNAME}}|%{__username}|g" resources/redborder.repo
 sed -i "s|{{REPO_URL}}|%{__repo_url}|g" resources/redborder.repo
 
 %install
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg
-install -D -m 644 resources/redborder.repo $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d/redborder-%{__product_version}.repo
+install -D -m 644 resources/redborder.repo $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d/%{__username}.repo
 install -D -m 644 resources/RPM-GPG-KEY-redborder-repo $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/
 
 %clean
@@ -32,7 +33,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(0644,root,root)
-/etc/yum.repos.d/redborder-%{__product_version}.repo
+/etc/yum.repos.d/%{__username}.repo
 /etc/pki/rpm-gpg/RPM-GPG-KEY-redborder-repo
 
 %changelog
