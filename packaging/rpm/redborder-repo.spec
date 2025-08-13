@@ -38,7 +38,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Fri Sep 22 2023 Miguel Negrón <manegron@redborder.com> - 1.0.0-1
 - Move to rhel9
-* Wed Jan 27 2020 Juan J. Prieto <jjprieto@redborder.com> - 0.0.5-1
+* Mon Jan 27 2020 Juan J. Prieto <jjprieto@redborder.com> - 0.0.5-1
 - Replace logstash 6 repo by 7
 * Thu Jan 24 2018 Juan J. Prieto <jjprieto@redborder.com> - 0.0.4-1
 - Add logstash repo
