@@ -22,3 +22,11 @@ Para usar un repositorio personalizado, por defecto se usará `https://packages.
 ```bash
 VERSION=0.0.1 REPO_URL="https://packages.redbordersc.lan" make rpm
 ```
+
+# Testing
+El proposito de los rpms es subirlos hacia la URL mencionada e instalar el paquete usando rpm -ivh. Sin embargo, para testear este repositorio, podemos lanzar
+```bash
+make
+dnf install packaging/rpm/pkgs/<nombre del paquete> -y
+```
+Esto nos debería crea un nuevo fichero `.repo` en `/etc/yum.repos.d/` y cuyo contenido hemos definido en el fichero de configuración `redborder.repo`
