@@ -1,6 +1,8 @@
-[{{USERNAME}}-{{PRODUCT_VERSION}}]
-name=Redborder Development Repository For {{USERNAME}}
-baseurl={{REPO_URL}}/{{PRODUCT_VERSION}}/{{USERNAME}}/rhel/9/$basearch/
+[redborder-{{PRODUCT_VERSION}}]
+name=Redborder Official Repository - $basearch
+baseurl={{REPO_URL}}/{{PRODUCT_VERSION}}/rhel/9/$basearch/
 enabled=1
 gpgcheck=0
 sslverify=0
+metadata_expire=6h
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redborder-repo

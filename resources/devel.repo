@@ -1,0 +1,6 @@
+[{{USERNAME}}-{{PRODUCT_VERSION}}]
+name=Redborder Development Repository For {{USERNAME}}
+baseurl={{REPO_URL}}/{{PRODUCT_VERSION}}/{{USERNAME}}/rhel/9/$basearch/
+enabled=1
+gpgcheck=0
+sslverify=0
