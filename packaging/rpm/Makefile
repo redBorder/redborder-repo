@@ -9,7 +9,7 @@ REPO_TEMPLATE = devel.repo
 REPO_FILENAME ?= $(USERNAME).repo
 else
 USERNAME= redborder
-PACKAGE_NAME = redborder-repo
+PACKAGE_NAME = redborder-repo-$(PRODUCT_VERSION)
 REPO_TEMPLATE = redborder.repo
 REPO_FILENAME ?= redborder-$(VERSION).repo
 endif

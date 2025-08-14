@@ -23,11 +23,12 @@ Para usar un repositorio personalizado, por defecto se usará `https://packages.
 REPO_URL="https://packages.redbordersc.lan" make
 ```
 
-## Construir el paquete con una versión específica
-El RPM construido tendrá por defecto la última etiqueta-versión en la rama master. Si se quiere modificar...:
+
+## Construir el paquete con para una versión fixeada
+El packages guardamos todas las versiones de redborder, coordinadas todas por redborder-repo. Para una release específica construimos el rpm así:
 
 ```bash
-VERSION=1.2.3 make
+PRODUCT_VERSION=00.00 make
 ```
 
 ## Construir el repo para desarrolladores
