@@ -3,7 +3,7 @@ VERSION?=	$(shell git describe --abbrev=6 --tags HEAD --always | sed 's/-/_/g')
 BUILD_NUMBER?= 1
 
 ifeq (devel,$(PRODUCT_VERSION))
-USERNAME?= noob
+USERNAME?= undefined_user
 PACKAGE_NAME = $(USERNAME)-repo
 REPO_TEMPLATE = devel.repo
 REPO_FILENAME ?= $(USERNAME).repo
