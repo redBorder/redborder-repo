@@ -23,6 +23,7 @@ jobs:
 
       - name: Install build dependencies
         run: |
+          mkdir /build
           curl https://raw.githubusercontent.com/redBorder/repoinit/master/sdk9.cfg > /build/sdk9.cfg
           echo \"config_opts['use_host_resolv'] = True\" >> /build/sdk9.cfg
           ln -s /build/sdk9.cfg /etc/mock/default.cfg"
