@@ -1,8 +1,9 @@
 PRODUCT_VERSION?= latest # devel | latest | testing | xx.x.x
 
-USERNAME ?= redborder
-ifneq (,$(findstring devel,$(PRODUCT_VERSION)))
-	USERNAME := redborder
+ifeq (devel,$(PRODUCT_VERSION))
+USERNAME?= noob
+else
+USERNAME= redborder
 endif
 
 VERSION?=	$(shell git describe --abbrev=6 --tags HEAD --always | sed 's/-/_/g')
@@ -43,11 +44,11 @@ build_prepare: archive
 srpm: build_prepare
 	/usr/bin/mock \
 		-r $(MOCK_CONFIG) \
-		--define "__package_name $(PACKAGE_NAME)" \
+		--define "__product_version $(PRODUCT_VERSION)" \
 		--define "__username $(USERNAME)" \
+		--define "__package_name $(PACKAGE_NAME)" \
 		--define "__version $(VERSION)" \
 		--define "__release $(BUILD_NUMBER)" \
-		--define "__product_version $(PRODUCT_VERSION)" \
 		--define "__repo_url $(REPO_URL)" \
 		--define "__repo_template ${REPO_TEMPLATE}" \
 		--define "__repo_filename ${REPO_FILENAME}" \
@@ -60,11 +61,11 @@ srpm: build_prepare
 rpm: srpm
 	/usr/bin/mock \
 		-r $(MOCK_CONFIG) \
-		--define "__package_name $(PACKAGE_NAME)" \
+		--define "__product_version $(PRODUCT_VERSION)" \
 		--define "__username $(USERNAME)" \
+		--define "__package_name $(PACKAGE_NAME)" \
 		--define "__version $(VERSION)"\
 		--define "__release $(BUILD_NUMBER)"\
-		--define "__product_version $(PRODUCT_VERSION)" \
 		--define "__repo_url $(REPO_URL)" \
 		--define "__repo_template ${REPO_TEMPLATE}" \
 		--define "__repo_filename ${REPO_FILENAME}" \
