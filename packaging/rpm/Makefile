@@ -1,8 +1,6 @@
-USERNAME?= ljblanco
+USERNAME?= redborder
 
 PRODUCT_VERSION?= devel
-
-PACKAGE_NAME?=	$(USERNAME)-repo
 
 VERSION?=	$(shell git describe --abbrev=6 --tags HEAD --always | sed 's/-/_/g')
 
@@ -14,8 +12,16 @@ RESULT_DIR?=pkgs
 
 REPO_URL?=https://packages.redborder.com
 
-all: rpm
+# Nombre del paquete: si PRODUCT_VERSION=devel, sin versión; si no, agrega versión
+PACKAGE_NAME ?= $(USERNAME)-repo$(if $(filter devel,$(PRODUCT_VERSION)),,$(-$(PRODUCT_VERSION)))
 
+# Nombre de template de repo: devel.repo si devel, redborder.repo si no
+REPO_TEMPLATE ?= $(if $(filter devel,$(PRODUCT_VERSION)),devel.repo,redborder.repo)
+
+# Nombre final del archivo de repo: si devel, $(USERNAME).repo; si no, redborder-$(VERSION).repo
+REPO_FILENAME ?= $(if $(filter devel,$(PRODUCT_VERSION)),$(USERNAME).repo,redborder-$(VERSION).repo)
+
+all: rpm
 
 SOURCES:
 	mkdir -p SOURCES
@@ -25,11 +31,9 @@ archive: SOURCES
 	git archive --prefix=$(PACKAGE_NAME)-$(VERSION)/ \
 		-o packaging/rpm/SOURCES/$(PACKAGE_NAME)-$(VERSION).tar.gz HEAD
 
-
 build_prepare: archive
 	mkdir -p $(RESULT_DIR)
 	rm -f $(RESULT_DIR)/$(PACKAGE_NAME)*.rpm
-
 
 srpm: build_prepare
 	/usr/bin/mock \
@@ -40,6 +44,8 @@ srpm: build_prepare
 		--define "__release $(BUILD_NUMBER)" \
 		--define "__product_version $(PRODUCT_VERSION)" \
 		--define "__repo_url $(REPO_URL)" \
+		--define "__repo_template ${REPO_TEMPLATE}" \
+		--define "__repo_filename ${REPO_FILENAME}" \
 		--resultdir=$(RESULT_DIR) \
 		--buildsrpm \
 		--spec=redborder-repo.spec \
@@ -55,6 +61,8 @@ rpm: srpm
 		--define "__release $(BUILD_NUMBER)"\
 		--define "__product_version $(PRODUCT_VERSION)" \
 		--define "__repo_url $(REPO_URL)" \
+		--define "__repo_template ${REPO_TEMPLATE}" \
+		--define "__repo_filename ${REPO_FILENAME}" \
 		--resultdir=$(RESULT_DIR) \
 		--rebuild $(RESULT_DIR)/$(PACKAGE_NAME)*.src.rpm
 	@echo "======= Binary RPMs now available in $(RESULT_DIR) ======="
@@ -65,4 +73,3 @@ clean:
 distclean: clean
 	rm -f build.log root.log state.log available_pkgs installed_pkgs \
 		*.rpm *.tar.gz
-
