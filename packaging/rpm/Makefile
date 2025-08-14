@@ -1,6 +1,9 @@
-USERNAME?= redborder
-
 PRODUCT_VERSION?= latest # devel | latest | testing | xx.x.x
+
+USERNAME ?= redborder
+ifneq (,$(findstring devel,$(PRODUCT_VERSION)))
+	USERNAME := redborder
+endif
 
 VERSION?=	$(shell git describe --abbrev=6 --tags HEAD --always | sed 's/-/_/g')
 
@@ -13,7 +16,9 @@ RESULT_DIR?=pkgs
 REPO_URL?=https://packages.redborder.com
 
 # Nombre del paquete: si PRODUCT_VERSION=devel, sin versión; si no, agrega versión
-PACKAGE_NAME ?= $(USERNAME)-repo$(if $(filter devel,$(PRODUCT_VERSION)),,$(-$(PRODUCT_VERSION)))
+IS_DEVEL := $(findstring devel,$(PRODUCT_VERSION))
+VERSION_SUFFIX := $(if $(IS_DEVEL),,$(-$(PRODUCT_VERSION)))
+PACKAGE_NAME = $(USERNAME)-repo$(VERSION_SUFFIX)
 
 # Nombre de template de repo: devel.repo si devel, redborder.repo para el resto
 REPO_TEMPLATE ?= $(if $(filter devel,$(PRODUCT_VERSION)),devel.repo,redborder.repo)
