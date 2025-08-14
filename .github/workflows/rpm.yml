@@ -1,0 +1,55 @@
+name: Build & Test RPM on Rocky 9.6 (for devel)
+
+on:
+  push:
+    branches:
+      - master
+      - Feature/#22435_adapt_for_devel
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: rockylinux:9.6
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Show OS info
+        run: cat /etc/os-release
+
+      - name: Install build dependencies
+        run: |
+          dnf -y install dnf-plugins-core rpm-build make gcc git mock
+          # Configuración básica de mock (usuario actual)
+          usermod -a -G mock root
+
+      - name: Build RPM
+        run: |
+          make rpm USERNAME=usertest
+          echo "RPMs generados:"
+          find . -name "*.rpm"
+
+      - name: Install generated RPM
+        run: |
+          RPM_FILE=$(find . -name "*.rpm" | head -n 1)
+          dnf -y install "$RPM_FILE"
+
+      - name: Run tests
+        run: |
+          echo "Verificando existencia del repo..."
+          test -f /etc/yum.repos.d/usertest.repo
+
+          echo "Verificando contenido del repo..."
+          grep -Fx "[usertest-devel]" /etc/yum.repos.d/usertest.repo
+          grep -Fx "baseurl=https://packages.redborder.com/devel/usertest/rhel/9/\$basearch/" /etc/yum.repos.d/usertest.repo
+          grep -Fx "enabled=1" /etc/yum.repos.d/usertest.repo
+
+          echo "✅ Pruebas completadas"
+      # - name: Upload RPM artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: built-rpm
+      #     path: |
+      #       **/*.rpm
