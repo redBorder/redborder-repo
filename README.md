@@ -24,11 +24,18 @@ REPO_URL="https://packages.redbordersc.lan" make
 ```
 
 
-## Construir el paquete con para una versión fixeada
-El packages guardamos todas las versiones de redborder, coordinadas todas por redborder-repo. Para una release específica construimos el rpm así:
+## Construir el paquete para una versión fixeada
+En packages guardamos todas las versiones de redborder, coordinadas todas por redborder-repo. Para una release específica construimos el rpm así:
 
 ```bash
 PRODUCT_VERSION=00.00 make
+```
+
+## Construir el paquete para testing
+En packages guardamos las versiones para la primera build con jenkins. Para esta primera versión construimos el rpm así:
+
+```bash
+PRODUCT_VERSION=testing make
 ```
 
 ## Construir el repo para desarrolladores
