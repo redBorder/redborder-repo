@@ -21,6 +21,7 @@ as well as configuration for yum.
 sed -i "s|{{PRODUCT_VERSION}}|%{__product_version}|g" %{_builddir}/%{name}-%{version}/resources/%{__repo_template}
 sed -i "s|{{USERNAME}}|%{__username}|g"               %{_builddir}/%{name}-%{version}/resources/%{__repo_template}
 sed -i "s|{{REPO_URL}}|%{__repo_url}|g"               %{_builddir}/%{name}-%{version}/resources/%{__repo_template}
+sed -i "s|{{VERSION}}|%{__version}|g"                 %{_builddir}/%{name}-%{version}/resources/%{__repo_template}
 
 %install
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d

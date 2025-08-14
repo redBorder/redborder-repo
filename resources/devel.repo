@@ -1,4 +1,4 @@
-[{{USERNAME}}-{{PRODUCT_VERSION}}]
+[{{USERNAME}}-{{PRODUCT_VERSION}}-{{VERSION}}]
 name=Redborder Development Repository For {{USERNAME}}
 baseurl={{REPO_URL}}/{{PRODUCT_VERSION}}/{{USERNAME}}/rhel/9/$basearch/
 enabled=1
