@@ -8,12 +8,6 @@ else
 USERNAME= redborder
 endif
 
-MOCK_CONFIG?=default
-
-RESULT_DIR?=pkgs
-
-REPO_URL?=https://packages.redborder.com
-
 # Nombre del paquete: si PRODUCT_VERSION=devel, sin versión; si no, agrega versión
 IS_DEVEL := $(findstring devel,$(PRODUCT_VERSION))
 VERSION_SUFFIX := $(if $(IS_DEVEL),,$(-$(PRODUCT_VERSION)))
@@ -39,10 +33,10 @@ REPO_FILENAME ?= $(if $(filter devel,$(PRODUCT_VERSION)),$(USERNAME).repo,redbor
 # REPO_FILENAME ?= redborder-$(VERSION).repo
 # endif
 
-# REPO_URL?=https://packages.redborder.com
+REPO_URL?=https://packages.redborder.com
 
-# MOCK_CONFIG?=default
-# RESULT_DIR?=pkgs
+MOCK_CONFIG?=default
+RESULT_DIR?=pkgs
 
 all: rpm
 
