@@ -1,6 +1,6 @@
 USERNAME?= redborder
 
-PRODUCT_VERSION?= devel
+PRODUCT_VERSION?= latest # devel | latest | testing | xx.x.x
 
 VERSION?=	$(shell git describe --abbrev=6 --tags HEAD --always | sed 's/-/_/g')
 
@@ -15,10 +15,10 @@ REPO_URL?=https://packages.redborder.com
 # Nombre del paquete: si PRODUCT_VERSION=devel, sin versión; si no, agrega versión
 PACKAGE_NAME ?= $(USERNAME)-repo$(if $(filter devel,$(PRODUCT_VERSION)),,$(-$(PRODUCT_VERSION)))
 
-# Nombre de template de repo: devel.repo si devel, redborder.repo si no
+# Nombre de template de repo: devel.repo si devel, redborder.repo para el resto
 REPO_TEMPLATE ?= $(if $(filter devel,$(PRODUCT_VERSION)),devel.repo,redborder.repo)
 
-# Nombre final del archivo de repo: si devel, $(USERNAME).repo; si no, redborder-$(VERSION).repo
+# Nombre final del archivo de repo: si devel, $(USERNAME).repo; redborder-$(VERSION).repo para el resto
 REPO_FILENAME ?= $(if $(filter devel,$(PRODUCT_VERSION)),$(USERNAME).repo,redborder-$(VERSION).repo)
 
 all: rpm
