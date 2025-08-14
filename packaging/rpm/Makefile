@@ -4,34 +4,15 @@ BUILD_NUMBER?= 1
 
 ifeq (devel,$(PRODUCT_VERSION))
 USERNAME?= noob
+PACKAGE_NAME = $(USERNAME)-repo
+REPO_TEMPLATE = devel.repo
+REPO_FILENAME ?= $(USERNAME).repo
 else
 USERNAME= redborder
+PACKAGE_NAME = redborder-repo
+REPO_TEMPLATE = redborder.repo
+REPO_FILENAME ?= redborder-$(VERSION).repo
 endif
-
-# Nombre del paquete: si PRODUCT_VERSION=devel, sin versión; si no, agrega versión
-IS_DEVEL := $(findstring devel,$(PRODUCT_VERSION))
-VERSION_SUFFIX := $(if $(IS_DEVEL),,$(-$(PRODUCT_VERSION)))
-PACKAGE_NAME = $(USERNAME)-repo$(VERSION_SUFFIX)
-
-# Nombre de template de repo: devel.repo si devel, redborder.repo para el resto
-REPO_TEMPLATE ?= $(if $(filter devel,$(PRODUCT_VERSION)),devel.repo,redborder.repo)
-
-# Nombre final del archivo de repo: si devel, $(USERNAME).repo; redborder-$(VERSION).repo para el resto
-REPO_FILENAME ?= $(if $(filter devel,$(PRODUCT_VERSION)),$(USERNAME).repo,redborder-$(VERSION).repo)
-
-
-
-# ifeq (devel,$(PRODUCT_VERSION))
-# USERNAME?= noob
-# PACKAGE_NAME = $(USERNAME)-repo
-# REPO_TEMPLATE = devel.repo
-# REPO_FILENAME ?= $(USERNAME).repo
-# else
-# USERNAME= redborder
-# PACKAGE_NAME = redborder-repo
-# REPO_TEMPLATE = redborder-repo
-# REPO_FILENAME ?= redborder-$(VERSION).repo
-# endif
 
 REPO_URL?=https://packages.redborder.com
 
