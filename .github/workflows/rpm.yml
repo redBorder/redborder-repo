@@ -3,7 +3,7 @@ name: Build & Test RPM on Rocky 9.3 (for devel)
 on:
   push:
     branches:
-      - master
+      # - master
       - Feature/#22435_adapt_for_devel
   pull_request:
 
@@ -11,7 +11,7 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     container:
-      image: rockylinux:9
+      image: rockylinux:9.3
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -23,12 +23,15 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          dnf -y install dnf-plugins-core rpm-build make gcc git
-          dnf config-manager --set-enabled crb
-          dnf install 'dnf-command(config-manager)'
+          curl https://raw.githubusercontent.com/redBorder/repoinit/master/sdk9.cfg > /build/sdk9.cfg
+          echo \"config_opts['use_host_resolv'] = True\" >> /build/sdk9.cfg
+          ln -s /build/sdk9.cfg /etc/mock/default.cfg"
+          dnf install dnf-plugins-core rpm-build make gcc git epel-release mock -y
 
-      - name: Build RPM
+      - name: Build RPM using mock
         run: |
+          git config --global --add safe.directory /build
+          cd /build/
           USERNAME=usertest VERSION=0.0.0 make rpm
           echo "RPMs generados:"
           find . -name "*.rpm"
@@ -36,7 +39,7 @@ jobs:
       - name: Install generated RPM
         run: |
           RPM_FILE=$(find . -name "*.rpm" | head -n 1)
-          dnf -y install "$RPM_FILE"
+          dnf install "$RPM_FILE" -y
 
       - name: Run tests
         run: |
