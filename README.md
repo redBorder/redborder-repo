@@ -23,6 +23,13 @@ Para usar un repositorio personalizado, por defecto se usará `https://packages.
 VERSION=0.0.1 REPO_URL="https://packages.redbordersc.lan" make rpm
 ```
 
+## Construir el repo para desarrolladores
+Si queremos instalar versiones personalizadas según el desarrollador que esté con una tarea específica, podemos construir el paquete especificando el nombre de usuario. Por ejemplo, si el usuario es `ljblanco` y ya existe una versión desactualizada el directorio de la URL, lanzaríamos lo siguiente:
+
+```bash
+USERNAME=ljblanco VERSION=0.0.2 make
+```
+
 # Testing
 El proposito de los rpms es subirlos hacia la URL mencionada e instalar el paquete usando rpm -ivh. Sin embargo, para testear este repositorio, podemos lanzar
 ```bash
