@@ -1,14 +1,12 @@
 PRODUCT_VERSION?= latest # devel | latest | testing | xx.x.x
+VERSION?=	$(shell git describe --abbrev=6 --tags HEAD --always | sed 's/-/_/g')
+BUILD_NUMBER?= 1
 
 ifeq (devel,$(PRODUCT_VERSION))
 USERNAME?= noob
 else
 USERNAME= redborder
 endif
-
-VERSION?=	$(shell git describe --abbrev=6 --tags HEAD --always | sed 's/-/_/g')
-
-BUILD_NUMBER?= 1
 
 MOCK_CONFIG?=default
 
@@ -26,6 +24,25 @@ REPO_TEMPLATE ?= $(if $(filter devel,$(PRODUCT_VERSION)),devel.repo,redborder.re
 
 # Nombre final del archivo de repo: si devel, $(USERNAME).repo; redborder-$(VERSION).repo para el resto
 REPO_FILENAME ?= $(if $(filter devel,$(PRODUCT_VERSION)),$(USERNAME).repo,redborder-$(VERSION).repo)
+
+
+
+# ifeq (devel,$(PRODUCT_VERSION))
+# USERNAME?= noob
+# PACKAGE_NAME = $(USERNAME)-repo
+# REPO_TEMPLATE = devel.repo
+# REPO_FILENAME ?= $(USERNAME).repo
+# else
+# USERNAME= redborder
+# PACKAGE_NAME = redborder-repo
+# REPO_TEMPLATE = redborder-repo
+# REPO_FILENAME ?= redborder-$(VERSION).repo
+# endif
+
+# REPO_URL?=https://packages.redborder.com
+
+# MOCK_CONFIG?=default
+# RESULT_DIR?=pkgs
 
 all: rpm
 
