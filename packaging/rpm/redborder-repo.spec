@@ -38,6 +38,8 @@ rm -rf $RPM_BUILD_ROOT
 /etc/pki/rpm-gpg/RPM-GPG-KEY-redborder-repo
 
 %changelog
+* Thu Agu 14 2025 Luis Blanco <ljblanco@redborder.com> -
+- Add params for new file devel.repo and parametrize some more values in this file.
 * Fri Sep 22 2023 Miguel Negrón <manegron@redborder.com> - 1.0.0-1
 - Move to rhel9
 * Mon Jan 27 2020 Juan J. Prieto <jjprieto@redborder.com> - 0.0.5-1
