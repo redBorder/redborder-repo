@@ -21,6 +21,7 @@ jobs:
 
       - name: Install build dependencies
         run: |
+          dnf config-manager --set-enabled crb
           dnf -y install dnf-plugins-core rpm-build make gcc git epel-release mock
           usermod -a -G mock root
 
