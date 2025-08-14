@@ -27,8 +27,7 @@ jobs:
 
       - name: Build RPM
         run: |
-          cd $GITHUB_WORKSPACE
-          make rpm USERNAME=usertest
+          USERNAME=usertest VERSION=0.0.0 make rpm
           echo "RPMs generados:"
           find . -name "*.rpm"
 
