@@ -52,7 +52,7 @@ jobs:
       - name: Build RPM using mock
         run: |
           docker exec builder bash -c "git config --global --add safe.directory /build"
-          docker exec builder bash -c "cd /build/ && PRODUCT_VERSION=${{ env.TAG }} && VERSION=${{ env.VERSION }} make rpm"
+          docker exec builder bash -c "cd /build/ && PRODUCT_VERSION=${{ env.TAG }} VERSION=${{ env.VERSION }} make rpm"
 
       - name: Copy RPMS
         run: |
