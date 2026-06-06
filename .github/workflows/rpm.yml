@@ -26,6 +26,8 @@ jobs:
           echo "TAG=$TAG" >> $GITHUB_ENV
           VERSION=$(cat ./VERSION)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+          REPO_URL=$(cat ./REPO_URL)
+          echo "REPO_URL=$REPO_URL" >> $GITHUB_ENV
         shell: bash
 
       - name: Set PRODUCT_VERSION
@@ -33,6 +35,9 @@ jobs:
 
       - name: Set VERSION
         run: echo "VERSION=${{ env.VERSION }}" >> $GITHUB_ENV
+
+      - name: Set REPO_URL
+        run: echo "REPO_URL=${{ env.REPO_URL }}" >> $GITHUB_ENV
 
       - name: Run Docker Container
         run: docker run --privileged -d --name builder --network host rockylinux:9 /bin/sleep infinity
@@ -52,7 +57,7 @@ jobs:
       - name: Build RPM using mock
         run: |
           docker exec builder bash -c "git config --global --add safe.directory /build"
-          docker exec builder bash -c "cd /build/ && PRODUCT_VERSION=${{ env.TAG }} VERSION=${{ env.VERSION }} make rpm"
+          docker exec builder bash -c "cd /build/ && REPO_URL=${{ env.REPO_URL}} PRODUCT_VERSION=${{ env.TAG }} VERSION=${{ env.VERSION }} make rpm"
 
       - name: Copy RPMS
         run: |
